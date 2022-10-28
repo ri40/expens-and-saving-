@@ -58,7 +58,7 @@ class SavingPage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 12,
                     child: TextFormField(
                       decoration: InputDecoration(
-                        hintText: '100 SR',
+                        hintText: '2022-10-31',
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -69,7 +69,7 @@ class SavingPage extends StatelessWidget {
                       onPressed: () {
                         // Respond to button press
                       },
-                      child: Text('CONTAINED BUTTON'),
+                      child: Text('Save'),
                       style:ElevatedButton.styleFrom(
                       primary: Colors.green,
                         minimumSize: const Size.fromHeight(50),
