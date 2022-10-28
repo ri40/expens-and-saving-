@@ -1,58 +1,87 @@
 import 'package:flutter/material.dart';
-class SavingPage extends StatefulWidget {
+
+class SavingPage extends StatelessWidget {
   const SavingPage({Key? key}) : super(key: key);
 
   @override
-  State<SavingPage> createState() => _SavingPageState();
-}
+  Widget build(BuildContext context) {
+    var textStyle = Theme.of(context).textTheme;
 
-class _SavingPageState extends State<SavingPage> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  final items = ['Shopping','Restaurant','Cafe','Gifts','Transportation'];
-  String? value;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Center(
-
-      child: Container(
-        width: 400,
-        padding: EdgeInsets.symmetric(horizontal: 12 , vertical: 4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9),
-          border: Border.all(color: Colors.green,width: 1),
-        ),
-
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
-            value: value,
-            iconSize: 36,
-            icon: Icon(Icons.keyboard_arrow_down_sharp, color: Colors.green),
-            isExpanded: true,
-            items: items.map(buildMenuItem).toList(),
-            onChanged: (value) => setState(()=> this.value=value),
-          ),
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 389,
+              width: 382,
+              margin: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Your Saving Reat', style: textStyle.subtitle2),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 12,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: '10 %',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Saving For This Month',
+                        style: textStyle.subtitle2),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 12,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: '100 SR',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Saving Data', style: textStyle.subtitle2),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 12,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: '100 SR',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 12,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Respond to button press
+                      },
+                      child: Text('CONTAINED BUTTON'),
+                      style:ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                        minimumSize: const Size.fromHeight(50),
+                    ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
-    ),
-  );
-  DropdownMenuItem<String>buildMenuItem(String item) =>DropdownMenuItem(
-    value: item,
-    child: Text(
-      item,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-    ),
-  );
+    );
+  }
 }
