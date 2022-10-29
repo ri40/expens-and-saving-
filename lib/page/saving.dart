@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SavingPage extends StatelessWidget {
   const SavingPage({Key? key}) : super(key: key);
@@ -6,6 +7,7 @@ class SavingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textStyle = Theme.of(context).textTheme;
+    TextEditingController _date = TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -57,10 +59,26 @@ class SavingPage extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 12,
                     child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: '2022-10-31',
+                      controller: _date,
+                      decoration: const InputDecoration(
+                        icon: Icon(Icons.calendar_today_outlined,
+                            color: Colors.green),
+                        hintText: 'Select Date',
                         border: OutlineInputBorder(),
                       ),
+                      onTap: () async {
+                        DateTime? pickeddate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2101));
+                        if (pickeddate != null) {
+                          setState(() {
+                            _date.text =
+                                DateFormat('yyyy-MM-dd').format(pickeddate);
+                          });
+                        }
+                      },
                     ),
                   ),
                   SizedBox(
@@ -70,10 +88,10 @@ class SavingPage extends StatelessWidget {
                         // Respond to button press
                       },
                       child: Text('Save'),
-                      style:ElevatedButton.styleFrom(
-                      primary: Colors.green,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
                         minimumSize: const Size.fromHeight(50),
-                    ),
+                      ),
                     ),
                   ),
                 ],
@@ -84,4 +102,6 @@ class SavingPage extends StatelessWidget {
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 }

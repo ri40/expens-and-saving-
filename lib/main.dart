@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:rimah/page/expens.dart';
 import 'package:rimah/page/saving.dart';
@@ -6,10 +5,8 @@ import 'package:rimah/page/saving.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,14 +19,11 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
-
   @override
   State<MainPage> createState() => _MainPageState();
 }
-
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) => DefaultTabController(
@@ -50,7 +44,5 @@ class _MainPageState extends State<MainPage> {
               ExpensePage(),
               SavingPage(),
             ],
-          )
-      )
-  );
+          )));
 }
